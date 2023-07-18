@@ -41,8 +41,9 @@ const AppNavbar = (props) => {
   };
 
   // jump to project categories
-  const jumpToCategoryBasedPosts = (categorySlug) => {
-    const categorySlugRoute = `/blogPosts/${categorySlug}`;
+  const jumpToCategoryBasedPosts = (category) => {
+    const { slug } = category;
+    const categorySlugRoute = `/blogPosts/${slug}`;
     return categorySlugRoute;
   };
 
@@ -53,7 +54,7 @@ const AppNavbar = (props) => {
         {projectCategories.map((category) => (
           <ListItem key={category.slug}>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <Link to={jumpToCategoryBasedPosts(category.slug)}>
+              <Link to={jumpToCategoryBasedPosts(category)}>
                 {category.name}
               </Link>
             </ListItemButton>
@@ -117,10 +118,7 @@ const AppNavbar = (props) => {
             </Button>
             {projectCategories.map((category) => (
               <Button key={category.slug}>
-                <Link
-                  to={jumpToCategoryBasedPosts(category.slug)}
-                  className="logo"
-                >
+                <Link to={jumpToCategoryBasedPosts(category)} className="logo">
                   {category.name}
                 </Link>
               </Button>

@@ -7,7 +7,8 @@ const category = `
 id,
 name,
 slug,
-color {css}`;
+color {css}
+categoryCoverImage {url}`;
 
 const blogPost = `
     id,
@@ -20,12 +21,13 @@ const blogPost = `
     description
 `;
 
-// for the categories
+// fetch the categories
 export const QUERY_SLUG_CATEGORIES = gql`
     {
         categories(){
             name,
-            slug
+            slug,
+            categoryCoverImage {url}
         }
     }
 `;

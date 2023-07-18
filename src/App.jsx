@@ -25,7 +25,9 @@ const App = () => {
           <Route path="/article/:slug" element={<BlogArticle />} />
         </Routes>
       </main>
-      <AppFooter />
+      {/* <footer style={{ bottom: 0 }} className="footer">
+        <AppFooter />
+      </footer> */}
     </ThemeProvider>
   );
 };

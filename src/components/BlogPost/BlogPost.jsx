@@ -13,6 +13,7 @@ const BlogPost = (props) => {
     slug,
     title,
   } = props;
+  console.log(content);
   return <Container maxWidth="md"></Container>;
 };
 

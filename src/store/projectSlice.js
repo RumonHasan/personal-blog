@@ -8,6 +8,7 @@ export const slices = createSlice({
     postsByCategories: [],
     searchedBlogPosts: [],
     categories: [],
+    categoryCoverImage: '',
     blogPostContent: {},
   },
   reducers: {
