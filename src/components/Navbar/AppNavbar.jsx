@@ -13,31 +13,28 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './AppNavbarStyles.css';
-import { setSearchValue } from '../../store/projectSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setBlogPostsCategories } from '../../store/projectSlice';
 
 // graph ql stuff
 import { graphcms, QUERY_SLUG_CATEGORIES } from '../../Graphql/Queries';
-import { useDispatch } from 'react-redux';
 
 const drawerWidth = 200;
 
 const AppNavbar = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [projectCategories, setProjectCategories] = useState([]);
-  const { pathname } = useLocation();
+  const projectCategories = useSelector((data) => data.mainReducer.categories);
   const dispatch = useDispatch();
 
-  // fetching the categories
+  // fetching the blog post categories
   useEffect(() => {
     graphcms
       .request(QUERY_SLUG_CATEGORIES)
-      .then((fetchedCategories) =>
-        setProjectCategories(fetchedCategories.categories)
-      );
-  }, []);
+      .then((data) => dispatch(setBlogPostsCategories(data.categories)));
+  }, [dispatch]);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -45,8 +42,8 @@ const AppNavbar = (props) => {
 
   // jump to project categories
   const jumpToCategoryBasedPosts = (categorySlug) => {
-    dispatch(setSearchValue(''));
-    return `/blogPosts/${categorySlug}`;
+    const categorySlugRoute = `/blogPosts/${categorySlug}`;
+    return categorySlugRoute;
   };
 
   // for mobile
@@ -71,7 +68,7 @@ const AppNavbar = (props) => {
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
         <Link to="/" className="logo">
-          RUMON BLOG
+          R BLOG
         </Link>
       </Typography>
       <Divider />
@@ -109,7 +106,7 @@ const AppNavbar = (props) => {
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
             <Link to="/" className="logo">
-              RUMON BLOG
+              <Typography fontFamily="Arial">R BLOG</Typography>
             </Link>
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>

@@ -1,19 +1,51 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-//primary project slice
 export const slices = createSlice({
   name: 'projectSlices',
   initialState: {
     searchPost: '',
+    blogPosts: [],
+    postsByCategories: [],
+    searchedBlogPosts: [],
+    categories: [],
+    blogPostContent: {},
   },
   reducers: {
     setSearchValue: (state, action) => {
       state.searchPost = action.payload;
     },
+    clearSearchValue: (state) => {
+      state.searchPost = '';
+    },
+    // fetching and querying blog posts based on categories and search
+    setBlogPosts: (state, action) => {
+      state.blogPosts = action.payload;
+    },
+    setPostsByCategories: (state, action) => {
+      state.postsByCategories = action.payload;
+    },
+    setSearchedBlogPosts: (state, action) => {
+      state.searchedBlogPosts = action.payload;
+    },
+    setBlogPostsCategories: (state, action) => {
+      state.categories = action.payload;
+    },
+    // setting blog post content article
+    setBlogPostContent: (state, action) => {
+      state.blogPostContent = action.payload;
+    },
   },
 });
 
 // actions go here
-export const { setSearchValue } = slices.actions;
+export const {
+  setSearchValue,
+  clearSearchValue,
+  setBlogPosts,
+  setPostsByCategories,
+  setSearchedBlogPosts,
+  setBlogPostsCategories,
+  setBlogPostContent,
+} = slices.actions;
 
 export default slices.reducer;

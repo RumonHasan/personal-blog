@@ -1,5 +1,6 @@
 import './App.css';
-import React from 'react';
+import { ThemeProvider } from '@mui/material';
+import { theme } from './services/Themes/Theme';
 import { Route, Routes } from 'react-router-dom';
 import AppNavbar from './components/Navbar/AppNavbar';
 import Home from './pages/Home';
@@ -11,7 +12,7 @@ import BlogArticle from './pages/BlogArticle';
 
 const App = () => {
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <AppNavbar />
       <div className="search-container">
         <AppSearch />
@@ -25,7 +26,7 @@ const App = () => {
         </Routes>
       </main>
       <AppFooter />
-    </React.Fragment>
+    </ThemeProvider>
   );
 };
 export default App;
