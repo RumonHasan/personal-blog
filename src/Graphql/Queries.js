@@ -64,3 +64,15 @@ export const QUERY_BLOG_POSTS_SEARCH = gql`
         }
 }
 `;
+
+// get a single post details
+export const QUERY_SINGLE_BLOG_POST = gql`
+    query GetSingleBlogPostDetails($slug: String!){
+        blogPosts(where: {slug: $slug}){
+            ${blogPost}
+            categories(){
+                ${category}
+            }
+        }
+    }
+`;
