@@ -16,12 +16,13 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.blog-content p {
+  font-family: 'Rubic', sans-serif;
+}
+
+/*These css classes are for journey Odyssey blog posts*/
 .main-img img {
   border-radius: 7px;
   width: 100%;
   height: 40%;
-}
-
-.blog-content p {
-  font-family: 'Rubic', sans-serif;
 }

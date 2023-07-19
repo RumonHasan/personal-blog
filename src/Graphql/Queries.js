@@ -67,7 +67,7 @@ export const QUERY_BLOG_POSTS_SEARCH = gql`
 }
 `;
 
-// get a single post details
+// get an array of len 1 blog posts.
 export const QUERY_SINGLE_BLOG_POST = gql`
     query GetSingleBlogPostDetails($slug: String!){
         blogPosts(where: {slug: $slug}){

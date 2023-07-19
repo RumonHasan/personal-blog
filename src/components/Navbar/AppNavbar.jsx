@@ -128,6 +128,7 @@ const AppNavbar = (props) => {
       </AppBar>
       <Box component="nav">
         <Drawer
+          PaperProps={{ sx: { backgroundColor: '#1876d1' } }}
           container={container}
           variant="temporary"
           open={mobileOpen}

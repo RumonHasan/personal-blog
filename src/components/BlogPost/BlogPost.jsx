@@ -10,7 +10,6 @@ const BlogPost = (props) => {
     coverImage,
     createdAt,
     updatedAt,
-    description,
     id,
     slug,
     title,

@@ -10,7 +10,7 @@ import AppSearch from './components/Search/AppSearch';
 import SearchedPosts from './pages/SearchedPosts';
 import BlogArticle from './pages/BlogArticle';
 import Lottie from 'lottie-react';
-import mainLoader from './services/Animation/mainLoader.json';
+import mainLoader from './services/Animation/loaderTwo.json';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
