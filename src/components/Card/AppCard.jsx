@@ -18,12 +18,12 @@ const AppCard = (props) => {
     slug,
     id,
     title,
-    content,
     description,
     createdAt,
     updatedAt,
     categories,
   } = props;
+  const descriptionLenLimit = 100;
   return (
     <Card sx={{ maxWidth: 500 }}>
       <CardHeader
@@ -42,24 +42,24 @@ const AppCard = (props) => {
       </Link>
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {description}
+          {description.length > descriptionLenLimit ? (
+            <>
+              {description.slice(0, descriptionLenLimit)}
+              <span className="elipses">...</span>
+            </>
+          ) : (
+            description
+          )}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          width="100%"
-        >
-          {categories.map((category) => {
-            return (
-              <Link to={`/blogPosts/${category.slug}`} key={category.id}>
-                <Button>{category.name}</Button>
-              </Link>
-            );
-          })}
-        </Box>
+      <CardActions className="card-actions">
+        {categories.map((category) => {
+          return (
+            <Link to={`/blogPosts/${category.slug}`} key={category.id}>
+              <Button>{category.name}</Button>
+            </Link>
+          );
+        })}
       </CardActions>
     </Card>
   );

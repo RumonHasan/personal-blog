@@ -1,0 +1,11 @@
+.card-actions {
+}
+
+.elipses {
+  font-weight: bold;
+  color: #1876d1;
+  cursor: pointer;
+  letter-spacing: 2px;
+  font-size: 25;
+  border-radius: 50%;
+}

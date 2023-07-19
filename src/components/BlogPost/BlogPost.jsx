@@ -1,5 +1,7 @@
-import { Container } from '@mui/material';
+import { Typography, LinearProgress, Card, CardContent } from '@mui/material';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import './BlogPostStyles.css';
 
 const BlogPost = (props) => {
   const {
@@ -13,8 +15,41 @@ const BlogPost = (props) => {
     slug,
     title,
   } = props;
-  console.log(content);
-  return <Container maxWidth="md"></Container>;
+  const [blogLoading, setBlogLoading] = useState(true);
+  const [blogContent, setBlogContent] = useState(null);
+
+  // generating the blog content asynchronously in order to prevent initial render error
+  useEffect(() => {
+    const generateBlogContent = async () => {
+      const timeout = setTimeout(() => {
+        if (content.html && content) {
+          setBlogLoading(false);
+          setBlogContent(content.html);
+        }
+      }, 1500);
+      return () => {
+        clearTimeout(timeout);
+      };
+    };
+    generateBlogContent();
+  }, [content]);
+
+  return (
+    <Card className="card-container">
+      <Typography variant="h3">{title}</Typography>
+      <CardContent>
+        {' '}
+        {blogLoading ? (
+          <LinearProgress />
+        ) : (
+          <div
+            className="blog-content"
+            dangerouslySetInnerHTML={{ __html: blogContent }}
+          />
+        )}
+      </CardContent>
+    </Card>
+  );
 };
 
 BlogPost.propTypes = {

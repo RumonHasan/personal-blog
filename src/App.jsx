@@ -14,10 +14,10 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <AppNavbar />
-      <div className="search-container">
-        <AppSearch />
-      </div>
       <main className="content">
+        <div className="search-container">
+          <AppSearch />
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blogPosts/:slug" element={<BlogPostsByCategory />} />
@@ -25,9 +25,6 @@ const App = () => {
           <Route path="/article/:slug" element={<BlogArticle />} />
         </Routes>
       </main>
-      {/* <footer style={{ bottom: 0 }} className="footer">
-        <AppFooter />
-      </footer> */}
     </ThemeProvider>
   );
 };

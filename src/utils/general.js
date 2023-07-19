@@ -11,3 +11,16 @@ export const createHyphenatedSearchParams = (searchParam) => {
   });
   return finalSearchParam.slice(0, -1);
 };
+
+// function to filter out description or content based on length
+export const shortenContent = (string, limit) => {
+  const stringArray = string.split(' ');
+  let firstChunk = stringArray.slice(0, limit).map((chunk) => chunk + ' ');
+  let remainingChunk = stringArray
+    .slice(limit, stringArray.length)
+    .map((chunk) => chunk + ' ');
+  return {
+    firstSection: firstChunk.join(''),
+    secondSection: remainingChunk.join(''),
+  };
+};
