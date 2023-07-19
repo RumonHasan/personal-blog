@@ -36,7 +36,9 @@ const BlogPost = (props) => {
 
   return (
     <Card className="card-container">
-      <Typography variant="h3">{title}</Typography>
+      <Typography variant="h3" sx={{ fontSize: { xs: '2rem', sm: '4rem' } }}>
+        {title}
+      </Typography>
       <CardContent>
         {' '}
         {blogLoading ? (

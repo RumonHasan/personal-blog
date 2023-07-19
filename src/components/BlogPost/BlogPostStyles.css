@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../services/Fonts/Roboto/Roboto-MediumItalic.ttf');
+}
+@font-face {
+  font-family: 'Lumanosimo';
+  src: url('../../services/Fonts/Lumanosimo/Lumanosimo-Regular.ttf');
+}
+@font-face {
+  font-family: 'Rubic';
+  src: url('../../services/Fonts/Rubik/Rubik-Italic-VariableFont_wght.ttf');
+}
 .card-container {
   margin: 16px;
   padding: 10px;
@@ -8,4 +20,8 @@
   border-radius: 7px;
   width: 100%;
   height: 40%;
+}
+
+.blog-content p {
+  font-family: 'Rubic', sans-serif;
 }

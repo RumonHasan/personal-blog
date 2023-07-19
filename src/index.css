@@ -1,4 +1,5 @@
 :root {
+  background-color: black;
 }
 
 body {
@@ -22,7 +23,7 @@ ul {
 .content {
   margin-top: 30px;
   overflow: auto;
-  height: calc(100vh - 10vh);
+  height: calc(100vh - 7vh);
 }
 
 @media (max-width: 600px) {
@@ -44,5 +45,13 @@ ul {
   height: 3%;
   padding: 16px;
   display: flex;
+  align-items: center;
+}
+
+.mainloader-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }

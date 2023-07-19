@@ -16,16 +16,14 @@ const AppCard = (props) => {
   const {
     coverImage,
     slug,
-    id,
     title,
     description,
     createdAt,
     updatedAt,
     categories,
   } = props;
-  const descriptionLenLimit = 100;
   return (
-    <Card sx={{ maxWidth: 500 }}>
+    <Card sx={{ maxWidth: 700 }}>
       <CardHeader
         title={title}
         subheader={
@@ -41,25 +39,35 @@ const AppCard = (props) => {
         />
       </Link>
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {description.length > descriptionLenLimit ? (
-            <>
-              {description.slice(0, descriptionLenLimit)}
-              <span className="elipses">...</span>
-            </>
-          ) : (
-            description
-          )}
-        </Typography>
+        <Card className="description-card">
+          <div style={{ overflow: 'auto', height: '100%' }}>
+            <Typography variant="body2" color="text.secondary">
+              {description}
+            </Typography>
+          </div>
+        </Card>
       </CardContent>
       <CardActions className="card-actions">
-        {categories.map((category) => {
-          return (
-            <Link to={`/blogPosts/${category.slug}`} key={category.id}>
-              <Button>{category.name}</Button>
-            </Link>
-          );
-        })}
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          width={'100%'}
+        >
+          <Box>
+            {categories.map((category) => {
+              return (
+                <Link to={`/blogPosts/${category.slug}`} key={category.id}>
+                  <Button>{category.name}</Button>
+                </Link>
+              );
+            })}
+          </Box>
+
+          <Typography className="updated-text">
+            Updated:{new Date(updatedAt).toDateString()}
+          </Typography>
+        </Box>
       </CardActions>
     </Card>
   );

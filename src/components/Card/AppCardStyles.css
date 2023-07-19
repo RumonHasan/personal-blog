@@ -9,3 +9,14 @@
   font-size: 25;
   border-radius: 50%;
 }
+
+.updated-text {
+  font-size: 10px;
+  color: #1876d1;
+}
+
+.description-card {
+  padding: 10px;
+  height: 100px;
+  overflow: hidden;
+}
