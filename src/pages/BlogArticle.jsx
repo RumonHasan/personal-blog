@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBlogPostContent } from '../store/projectSlice';
 import BlogPost from '../components/BlogPost/BlogPost';
+import './pagesStyles.css';
 
 const BlogArticle = () => {
   const { slug } = useParams();
@@ -17,7 +18,11 @@ const BlogArticle = () => {
     });
   }, [slug, dispatch]);
 
-  return <BlogPost {...singleBlogPostContent} />;
+  return (
+    <div className="blog-article-container">
+      <BlogPost {...singleBlogPostContent} />
+    </div>
+  );
 };
 
 export default BlogArticle;
