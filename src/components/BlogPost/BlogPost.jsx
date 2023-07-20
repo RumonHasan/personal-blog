@@ -17,6 +17,7 @@ const BlogPost = (props) => {
   const [blogLoading, setBlogLoading] = useState(true);
   const [blogContent, setBlogContent] = useState(null);
   const [postDarkMode, setPostDarkMode] = useState('light');
+  // setting card default dark mode
   const customTheme = createTheme({
     palette: {
       mode: postDarkMode,

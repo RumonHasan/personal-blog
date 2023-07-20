@@ -69,7 +69,7 @@ const AppNavbar = (props) => {
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
         <Link to="/" className="logo">
-          R BLOG
+          R BLOG (Beta)
         </Link>
       </Typography>
       <Divider />
@@ -109,7 +109,7 @@ const AppNavbar = (props) => {
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
             <Link to="/" className="logo">
-              <Typography fontFamily="Arial">R BLOG</Typography>
+              <Typography fontFamily="Arial">R BLOG (Beta)</Typography>
             </Link>
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
