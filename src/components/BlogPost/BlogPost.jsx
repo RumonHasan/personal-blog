@@ -2,6 +2,7 @@ import { Typography, LinearProgress, Card, CardContent } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import './BlogPostStyles.css';
+import { purifyDOMContent } from '../../utils/general';
 
 const BlogPost = (props) => {
   const {
@@ -45,7 +46,9 @@ const BlogPost = (props) => {
         ) : (
           <div
             className="blog-content"
-            dangerouslySetInnerHTML={{ __html: blogContent }}
+            dangerouslySetInnerHTML={{
+              __html: purifyDOMContent(blogContent),
+            }}
           />
         )}
       </CardContent>

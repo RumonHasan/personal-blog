@@ -55,7 +55,7 @@ const AppNavbar = (props) => {
           <ListItem key={category.slug}>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <Link to={jumpToCategoryBasedPosts(category)}>
-                {category.name}
+                <Typography color={'white'}>{category.name}</Typography>
               </Link>
             </ListItemButton>
           </ListItem>
@@ -76,7 +76,9 @@ const AppNavbar = (props) => {
       <List>
         <ListItem>
           <ListItemButton>
-            <Link to="/">All</Link>
+            <Link to="/">
+              <Typography color={'white'}>All</Typography>
+            </Link>
           </ListItemButton>
         </ListItem>
         <DrawerCategories />

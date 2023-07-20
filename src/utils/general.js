@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 // function to create search param slug
 export const createHyphenatedSearchParams = (searchParam) => {
   const space = ' ';
@@ -23,4 +24,9 @@ export const shortenContent = (string, limit) => {
     firstSection: firstChunk.join(''),
     secondSection: remainingChunk.join(''),
   };
+};
+
+// function to sanitize dom elements
+export const purifyDOMContent = (content) => {
+  return DOMPurify.sanitize(content);
 };

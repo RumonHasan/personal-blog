@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.14.0",
     "@mui/material": "^5.14.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "dompurify": "^3.0.5",
     "graphql-request": "^6.1.0",
     "lottie-react": "^2.4.0",
     "prop-types": "^15.8.1",
