@@ -39,12 +39,14 @@ const AppCard = (props) => {
       </Box>
 
       <Link to={`/article/${slug}`}>
-        <CardMedia
-          component="img"
-          alt="green iguana"
-          height="300"
-          image={coverImage.url}
-        />
+        <Box className="zoom-img">
+          <CardMedia
+            component="img"
+            alt={title}
+            height="300"
+            image={coverImage.url}
+          />
+        </Box>
       </Link>
       <CardContent>
         <Card className="description-card">

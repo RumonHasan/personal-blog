@@ -122,6 +122,12 @@ const AppNavbar = (props) => {
               <Typography fontFamily="Arial">Rumon`s BLOG (Beta)</Typography>
             </Link>
           </Typography>
+          {/** About me link */}
+          {/* <Box
+            sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '32px' }}
+          >
+            <Link className="category-link">About Me</Link>
+          </Box> */}
           {/* Category menu goes here*/}
           <Box
             sx={{ display: { xs: 'none', sm: 'block' } }}

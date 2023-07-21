@@ -17,3 +17,16 @@
   height: 100px;
   overflow: hidden;
 }
+
+/* adding card photo zoom feature for the blog card*/
+.zoom-img {
+  overflow: hidden;
+}
+.zoom-img img {
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.zoom-img img:hover {
+  transform: scale(1.2);
+  transform-origin: center center;
+}
