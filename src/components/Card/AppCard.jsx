@@ -11,6 +11,7 @@ import {
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './AppCardStyles.css';
+import BlogStatusBadge from './Components/BlogStatusBadge/BlogStatusBadge';
 
 const AppCard = (props) => {
   const {
@@ -21,15 +22,22 @@ const AppCard = (props) => {
     createdAt,
     updatedAt,
     categories,
+    blogStatus,
   } = props;
   return (
     <Card sx={{ maxWidth: 700 }}>
-      <CardHeader
-        title={title}
-        subheader={
-          <Typography>{new Date(createdAt).toDateString()}</Typography>
-        }
-      />
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <CardHeader
+          title={title}
+          subheader={
+            <Typography>{new Date(createdAt).toDateString()}</Typography>
+          }
+        />
+        <Box>
+          <BlogStatusBadge blogStatus={blogStatus} />
+        </Box>
+      </Box>
+
       <Link to={`/article/${slug}`}>
         <CardMedia
           component="img"
@@ -83,6 +91,7 @@ AppCard.propTypes = {
   createdAt: PropTypes.any,
   updatedAt: PropTypes.any,
   categories: PropTypes.any,
+  blogStatus: PropTypes.any,
 };
 
 export default AppCard;

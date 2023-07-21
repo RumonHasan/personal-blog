@@ -5,6 +5,7 @@ import {
   CardContent,
   Box,
   Switch,
+  CardActions,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
@@ -13,7 +14,7 @@ import { purifyDOMContent } from '../../utils/general';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const BlogPost = (props) => {
-  const { content, coverImage, createdAt, updatedAt, id, slug, title } = props;
+  const { content, createdAt, updatedAt, id, slug, title } = props;
   const [blogLoading, setBlogLoading] = useState(true);
   const [blogContent, setBlogContent] = useState(null);
   const [postDarkMode, setPostDarkMode] = useState('light');
@@ -79,6 +80,11 @@ const BlogPost = (props) => {
             />
           )}
         </CardContent>
+        <CardActions>
+          <Typography>
+            Published On: {new Date(createdAt).toDateString()}
+          </Typography>
+        </CardActions>
       </Card>
     </ThemeProvider>
   );

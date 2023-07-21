@@ -11,12 +11,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
+import { FormControl } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { InputLabel, MenuItem, Select } from '@mui/material';
 import { Link } from 'react-router-dom';
 import './AppNavbarStyles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBlogPostsCategories } from '../../store/projectSlice';
+import { colors } from '../../services/Themes/Colors';
 
 // graph ql stuff
 import { graphcms, QUERY_SLUG_CATEGORIES } from '../../Graphql/Queries';
@@ -26,8 +28,13 @@ const drawerWidth = 200;
 const AppNavbar = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [categorySelect, setCategorySelect] = useState('');
   const projectCategories = useSelector((data) => data.mainReducer.categories);
   const dispatch = useDispatch();
+
+  const handleCategoryChange = (event) => {
+    setCategorySelect(event.target.value);
+  };
 
   // fetching the blog post categories
   useEffect(() => {
@@ -53,9 +60,12 @@ const AppNavbar = (props) => {
       <>
         {projectCategories.map((category) => (
           <ListItem key={category.slug}>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <Link to={jumpToCategoryBasedPosts(category)}>
-                <Typography color={'white'}>{category.name}</Typography>
+            <ListItemButton>
+              <Link
+                to={jumpToCategoryBasedPosts(category)}
+                className="category-link category-select-item"
+              >
+                <Typography>{category.name}</Typography>
               </Link>
             </ListItemButton>
           </ListItem>
@@ -68,7 +78,7 @@ const AppNavbar = (props) => {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        <Link to="/" className="logo">
+        <Link to="/" className="category-link category-select-item">
           R BLOG (Beta)
         </Link>
       </Typography>
@@ -76,8 +86,8 @@ const AppNavbar = (props) => {
       <List>
         <ListItem>
           <ListItemButton>
-            <Link to="/">
-              <Typography color={'white'}>All</Typography>
+            <Link to="/" className="category-link category-select-item">
+              <Typography>All</Typography>
             </Link>
           </ListItemButton>
         </ListItem>
@@ -108,29 +118,63 @@ const AppNavbar = (props) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            <Link to="/" className="logo">
-              <Typography fontFamily="Arial">R BLOG (Beta)</Typography>
+            <Link to="/" className="category-link">
+              <Typography fontFamily="Arial">Rumon`s BLOG (Beta)</Typography>
             </Link>
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            <Button>
-              <Link to="/" className="logo">
-                All Blog Posts
-              </Link>
-            </Button>
-            {projectCategories.map((category) => (
-              <Button key={category.slug}>
-                <Link to={jumpToCategoryBasedPosts(category)} className="logo">
-                  {category.name}
-                </Link>
-              </Button>
-            ))}
+          {/* Category menu goes here*/}
+          <Box
+            sx={{ display: { xs: 'none', sm: 'block' } }}
+            className="category-container"
+          >
+            {/*Blog Categories */}
+            <FormControl sx={{ width: 200 }}>
+              <InputLabel id="select-label" sx={{ color: 'white' }}>
+                Category
+              </InputLabel>
+              <Select
+                MenuProps={{
+                  sx: {
+                    '& .MuiPaper-root': {
+                      backgroundColor: colors.MAIN_BLUE,
+                    },
+                  },
+                }}
+                className="category-select"
+                labelId="select-label"
+                value={categorySelect}
+                onChange={handleCategoryChange}
+              >
+                <MenuItem value="All">
+                  {' '}
+                  <Link
+                    to="/"
+                    className="category-link category-select-item category-all"
+                  >
+                    All Posts
+                  </Link>
+                </MenuItem>
+                {projectCategories.map((category) => {
+                  const { slug, name } = category;
+                  return (
+                    <MenuItem value={name} key={slug}>
+                      <Link
+                        to={jumpToCategoryBasedPosts(category)}
+                        className="category-link category-select-item"
+                      >
+                        {name}
+                      </Link>
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
           </Box>
         </Toolbar>
       </AppBar>
       <Box component="nav">
         <Drawer
-          PaperProps={{ sx: { backgroundColor: '#1876d1' } }}
+          PaperProps={{ sx: { backgroundColor: colors.MAIN_BLUE } }}
           container={container}
           variant="temporary"
           open={mobileOpen}

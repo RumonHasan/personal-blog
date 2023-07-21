@@ -19,6 +19,7 @@ const blogPost = `
     coverImage {url}
     content {html}
     description
+    blogStatus
 `;
 
 // fetch the categories
