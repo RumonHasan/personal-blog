@@ -11,6 +11,7 @@ import SearchedPosts from './pages/SearchedPosts';
 import BlogArticle from './pages/BlogArticle';
 import Lottie from 'lottie-react';
 import mainLoader from './services/Animation/loaderTwo.json';
+import Map from './components/Map/Map';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -34,7 +35,7 @@ const App = () => {
           <Lottie animationData={mainLoader} lottieRef={animationRef} />
         </div>
       ) : (
-        <>
+        <div>
           <AppNavbar />
           <main className="content">
             <div className="search-container">
@@ -48,9 +49,10 @@ const App = () => {
               />
               <Route path="/search/:slug" element={<SearchedPosts />} />
               <Route path="/article/:slug" element={<BlogArticle />} />
+              <Route path="/map" element={<Map />} />
             </Routes>
           </main>
-        </>
+        </div>
       )}
     </ThemeProvider>
   );

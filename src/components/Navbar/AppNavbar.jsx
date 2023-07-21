@@ -123,12 +123,14 @@ const AppNavbar = (props) => {
             </Link>
           </Typography>
           {/** About me link */}
-          {/* <Box
+          <Box
             sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '32px' }}
           >
-            <Link className="category-link">About Me</Link>
-          </Box> */}
-          {/* Category menu goes here*/}
+            <Link className="category-link" to={'/map'}>
+              Explore
+            </Link>
+          </Box>
+
           <Box
             sx={{ display: { xs: 'none', sm: 'block' } }}
             className="category-container"
