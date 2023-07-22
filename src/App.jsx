@@ -1,7 +1,5 @@
 import './App.css';
 import { useState, useEffect, useRef } from 'react';
-import { ThemeProvider } from '@mui/material';
-import { theme } from './services/Themes/Theme';
 import { Route, Routes } from 'react-router-dom';
 import AppNavbar from './components/Navbar/AppNavbar';
 import Home from './pages/Home';
@@ -29,7 +27,7 @@ const App = () => {
   }, [loading]);
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       {loading ? (
         <div className="mainloader-container">
           <Lottie animationData={mainLoader} lottieRef={animationRef} />
@@ -54,7 +52,7 @@ const App = () => {
           </main>
         </div>
       )}
-    </ThemeProvider>
+    </>
   );
 };
 export default App;

@@ -1,34 +1,22 @@
 import { useState, useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './MapStyles.css';
+import { locationCoords } from '../../utils/Coords';
 
 export const Map = () => {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState('139.839478');
-  const [lat, setLat] = useState('35.652832');
-  const [zoom, setZoom] = useState(9);
+  const [destinationCount] = useState(locationCoords.length);
+  const [lng] = useState(139.6917);
+  const [lat] = useState(35.6895);
+  const [zoom] = useState(10);
+  // egde coordinates of host country -> Japan
+  const [southBounds] = useState([122.0, 20.0]);
+  const [northBounds] = useState([153.0, 45.0]);
+  // markers of visited places
+  const [markers] = useState(locationCoords);
 
-  // adding own location
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLat(position.coords.latitude);
-          setLng(position.coords.longitude);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    } else {
-      console.log('location not found');
-    }
-  }, []);
-
-  // initializing the map app
-  useEffect(() => {
-    console.log(lng, lng);
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
@@ -37,13 +25,18 @@ export const Map = () => {
       zoom: zoom,
       accessToken: import.meta.env.VITE_MAP_BOX_TOKEN,
     });
-  }, [lat, lng, zoom]);
+    // fitting the bounds of Japan map
+    map.current.fitBounds([northBounds, southBounds]);
+    // adding the markers
+    markers.map((marker) => {
+      const { coords } = marker;
+      new mapboxgl.Marker().setLngLat(coords).addTo(map.current);
+    });
+  }, [lat, lng, markers, northBounds, southBounds, zoom]);
 
   return (
     <div className="container">
-      <div className="sidebar">
-        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-      </div>
+      <div className="sidebar">Destination Count: {destinationCount}</div>
       <div className="map-container" ref={mapContainer} />
     </div>
   );

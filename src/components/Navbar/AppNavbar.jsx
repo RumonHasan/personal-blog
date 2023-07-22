@@ -19,7 +19,7 @@ import './AppNavbarStyles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBlogPostsCategories } from '../../store/projectSlice';
 import { colors } from '../../services/Themes/Colors';
-
+import LanguageIcon from '@mui/icons-material/Language';
 // graph ql stuff
 import { graphcms, QUERY_SLUG_CATEGORIES } from '../../Graphql/Queries';
 
@@ -86,11 +86,22 @@ const AppNavbar = (props) => {
       <List>
         <ListItem>
           <ListItemButton>
-            <Link to="/" className="category-link category-select-item">
-              <Typography>All</Typography>
+            <Link className="category-link" to={'/map'}>
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <Typography sx={{ paddingRight: '7px' }}>Explore</Typography>
+                <LanguageIcon fontSize="small" />
+              </Box>
             </Link>
           </ListItemButton>
         </ListItem>
+        <ListItem>
+          <ListItemButton>
+            <Link to="/" className="category-link category-select-item">
+              <Typography>All Blogs</Typography>
+            </Link>
+          </ListItemButton>
+        </ListItem>
+
         <DrawerCategories />
       </List>
     </Box>
@@ -122,12 +133,15 @@ const AppNavbar = (props) => {
               <Typography fontFamily="Arial">Rumon`s BLOG (Beta)</Typography>
             </Link>
           </Typography>
-          {/** About me link */}
+          {/** Link to map */}
           <Box
             sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '32px' }}
           >
             <Link className="category-link" to={'/map'}>
-              Explore
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <Typography sx={{ paddingRight: '7px' }}>Explore</Typography>
+                <LanguageIcon fontSize="small" />
+              </Box>
             </Link>
           </Box>
 
