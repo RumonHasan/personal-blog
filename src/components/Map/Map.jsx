@@ -2,11 +2,15 @@ import { useState, useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './MapStyles.css';
 import { locationCoords } from '../../utils/Coords';
+import { Tooltip } from '@mui/material';
 
 export const Map = () => {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [destinationCount] = useState(locationCoords.length);
+  const [destinationCounter, setDestinationCounter] = useState({
+    tripCounter: 0,
+    hikeCounter: 0,
+  });
   const [lng] = useState(139.6917);
   const [lat] = useState(35.6895);
   const [zoom] = useState(10);
@@ -15,6 +19,41 @@ export const Map = () => {
   const [northBounds] = useState([153.0, 45.0]);
   // markers of visited places
   const [markers] = useState(locationCoords);
+
+  // getting trips and location counts
+  useEffect(() => {
+    let tripCount = 0;
+    let hikeCount = 0;
+    for (let index = 0; index < locationCoords.length; index++) {
+      locationCoords[index].type === 'hike' && hikeCount++;
+      locationCoords[index].type === 'trip' && tripCount++;
+    }
+    setDestinationCounter({
+      tripCounter: tripCount,
+      hikeCounter: hikeCount,
+    });
+  }, []);
+
+  // get custom icon marker based on type
+  const getCustomMarkerIconElement = (type) => {
+    const iconMarkupEl = document.createElement('div');
+    const iconImageEl = document.createElement('img');
+    iconMarkupEl.classList.add(`${type}-marker`);
+    iconImageEl.classList.add('zoom-animation');
+    iconImageEl.classList.add(`${type}-marker-img`);
+    if (type === 'hike') {
+      iconImageEl.src = '/src/assets/icons/mountain.png';
+      iconImageEl.style.width = '30px';
+      iconImageEl.style.height = '30px';
+    }
+    if (type === 'trip') {
+      iconImageEl.src = '/src/assets/icons/japan.png';
+      iconImageEl.style.width = '30px';
+      iconImageEl.style.height = '30px';
+    }
+    iconMarkupEl.appendChild(iconImageEl);
+    return iconMarkupEl;
+  };
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -29,14 +68,30 @@ export const Map = () => {
     map.current.fitBounds([northBounds, southBounds]);
     // adding the markers
     markers.map((marker) => {
-      const { coords } = marker;
-      new mapboxgl.Marker().setLngLat(coords).addTo(map.current);
+      const { coords, type } = marker;
+      if (type === 'hike') {
+        const hikeIconMarkerElement = getCustomMarkerIconElement(type);
+        new mapboxgl.Marker(hikeIconMarkerElement)
+          .setLngLat(coords)
+          .addTo(map.current);
+      } else if (type === 'trip') {
+        const tripIconMarkerElement = getCustomMarkerIconElement(type);
+        new mapboxgl.Marker(tripIconMarkerElement)
+          .setLngLat(coords)
+          .addTo(map.current);
+      }
     });
   }, [lat, lng, markers, northBounds, southBounds, zoom]);
 
   return (
     <div className="container">
-      <div className="sidebar">Destination Count: {destinationCount}</div>
+      <Tooltip title="Displays the locations only the blogged hike and trip counts!">
+        <div className="sidebar">
+          Trips: {destinationCounter.tripCounter}, Hikes:{' '}
+          {destinationCounter.hikeCounter}{' '}
+        </div>
+      </Tooltip>
+
       <div className="map-container" ref={mapContainer} />
     </div>
   );

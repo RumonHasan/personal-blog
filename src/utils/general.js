@@ -30,3 +30,10 @@ export const shortenContent = (string, limit) => {
 export const purifyDOMContent = (content) => {
   return DOMPurify.sanitize(content);
 };
+
+// function generate custom marker element
+export const generateCustomMarker = (type) => {
+  const markerElement = document.createElement('div');
+  markerElement.classList.add(`${type}-marker`);
+  return markerElement;
+};
