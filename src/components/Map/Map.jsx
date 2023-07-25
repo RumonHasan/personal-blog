@@ -35,12 +35,12 @@ export const Map = () => {
   }, []);
 
   // get custom icon marker based on type
-  const getCustomMarkerIconElement = (type) => {
-    const iconMarkupEl = document.createElement('div');
-    iconMarkupEl.classList.add(`${type}-marker`);
-    iconMarkupEl.classList.add('zoom-animation');
-    return iconMarkupEl;
-  };
+  // const getCustomMarkerIconElement = (type) => {
+  //   const iconMarkupEl = document.createElement('div');
+  //   iconMarkupEl.classList.add(`${type}-marker`);
+  //   iconMarkupEl.classList.add('zoom-animation');
+  //   return iconMarkupEl;
+  // };
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -55,7 +55,7 @@ export const Map = () => {
     map.current.fitBounds([northBounds, southBounds]);
     // adding the markers
     markers.map((marker) => {
-      const { coords, type } = marker;
+      const { coords } = marker;
       new mapboxgl.Marker().setLngLat(coords).addTo(map.current);
     });
   }, [lat, lng, markers, northBounds, southBounds, zoom]);

@@ -14,7 +14,7 @@ import { purifyDOMContent } from '../../utils/general';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const BlogPost = (props) => {
-  const { content, createdAt, updatedAt, id, slug, title } = props;
+  const { content, createdAt, title } = props;
   const [blogLoading, setBlogLoading] = useState(true);
   const [blogContent, setBlogContent] = useState(null);
   const [postDarkMode, setPostDarkMode] = useState('light');

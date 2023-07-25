@@ -30,3 +30,42 @@
   transform: scale(1.2);
   transform-origin: center center;
 }
+
+/* card glowing styles for the latest post*/
+.latest-post-card-container {
+  animation: glowing 20s linear infinite;
+  position: relative;
+}
+.latest-label {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-bottom-left-radius: 7px;
+  border-top-left-radius: 7px;
+  padding: 5px;
+  background: linear-gradient(to right, #ffcccc, #ff9999);
+  color: white;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.75);
+  }
+  25% {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.9), 0 0 20px rgba(255, 100, 0, 0.9),
+      0 0 30px rgba(255, 200, 0, 0.9);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 100, 0, 0.9), 0 0 25px rgba(255, 200, 0, 0.9),
+      0 0 35px rgba(0, 255, 0, 0.9);
+  }
+  75% {
+    box-shadow: 0 0 20px rgba(255, 200, 0, 0.9), 0 0 30px rgba(0, 255, 0, 0.9),
+      0 0 40px rgba(0, 0, 255, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.9), 0 0 35px rgba(0, 0, 255, 0.9),
+      0 0 45px rgba(255, 0, 255, 0.9);
+  }
+}

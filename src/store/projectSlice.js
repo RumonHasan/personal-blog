@@ -10,6 +10,8 @@ export const slices = createSlice({
     categories: [],
     categoryCoverImage: '',
     blogPostContent: {},
+    latestPostId: '',
+    latestUpdatedPostId: '',
   },
   reducers: {
     setSearchValue: (state, action) => {
@@ -35,6 +37,13 @@ export const slices = createSlice({
     setBlogPostContent: (state, action) => {
       state.blogPostContent = action.payload;
     },
+    // setting latest post
+    setLatestBlogPost: (state, action) => {
+      state.latestPostId = action.payload;
+    },
+    setLatestUpdatedBlogPost: (state, action) => {
+      state.latestPostId = action.payload;
+    },
   },
 });
 
@@ -47,6 +56,8 @@ export const {
   setSearchedBlogPosts,
   setBlogPostsCategories,
   setBlogPostContent,
+  setLatestBlogPost,
+  setLatestUpdatedBlogPost,
 } = slices.actions;
 
 export default slices.reducer;

@@ -12,9 +12,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './AppCardStyles.css';
 import BlogStatusBadge from './Components/BlogStatusBadge/BlogStatusBadge';
+import { useSelector } from 'react-redux';
 
 const AppCard = (props) => {
   const {
+    id,
     coverImage,
     slug,
     title,
@@ -24,8 +26,14 @@ const AppCard = (props) => {
     categories,
     blogStatus,
   } = props;
+  const latestBlogPostId = useSelector((data) => data.mainReducer.latestPostId);
   return (
-    <Card sx={{ maxWidth: 700 }}>
+    <Card
+      sx={{ maxWidth: 700 }}
+      className={
+        id === latestBlogPostId ? 'latest-post-card-container' : undefined
+      }
+    >
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <CardHeader
           title={title}
@@ -56,6 +64,7 @@ const AppCard = (props) => {
             </Typography>
           </div>
         </Card>
+        {/* {id === latestBlogPostId && <span className="latest-label">New</span>} */}
       </CardContent>
       <CardActions className="card-actions">
         <Box
