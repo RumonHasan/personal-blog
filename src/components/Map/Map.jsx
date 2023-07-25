@@ -37,21 +37,8 @@ export const Map = () => {
   // get custom icon marker based on type
   const getCustomMarkerIconElement = (type) => {
     const iconMarkupEl = document.createElement('div');
-    const iconImageEl = document.createElement('img');
     iconMarkupEl.classList.add(`${type}-marker`);
-    iconImageEl.classList.add('zoom-animation');
-    iconImageEl.classList.add(`${type}-marker-img`);
-    if (type === 'hike') {
-      iconImageEl.src = '/src/assets/icons/mountain.png';
-      iconImageEl.style.width = '30px';
-      iconImageEl.style.height = '30px';
-    }
-    if (type === 'trip') {
-      iconImageEl.src = '/src/assets/icons/japan.png';
-      iconImageEl.style.width = '30px';
-      iconImageEl.style.height = '30px';
-    }
-    iconMarkupEl.appendChild(iconImageEl);
+    iconMarkupEl.classList.add('zoom-animation');
     return iconMarkupEl;
   };
 
@@ -69,17 +56,7 @@ export const Map = () => {
     // adding the markers
     markers.map((marker) => {
       const { coords, type } = marker;
-      if (type === 'hike') {
-        const hikeIconMarkerElement = getCustomMarkerIconElement(type);
-        new mapboxgl.Marker(hikeIconMarkerElement)
-          .setLngLat(coords)
-          .addTo(map.current);
-      } else if (type === 'trip') {
-        const tripIconMarkerElement = getCustomMarkerIconElement(type);
-        new mapboxgl.Marker(tripIconMarkerElement)
-          .setLngLat(coords)
-          .addTo(map.current);
-      }
+      new mapboxgl.Marker().setLngLat(coords).addTo(map.current);
     });
   }, [lat, lng, markers, northBounds, southBounds, zoom]);
 

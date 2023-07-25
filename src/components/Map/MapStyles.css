@@ -41,3 +41,9 @@
     transform: scale(1, 1);
   }
 }
+
+.mountain {
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 30px solid brown;
+}
