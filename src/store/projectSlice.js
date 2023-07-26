@@ -42,7 +42,7 @@ export const slices = createSlice({
       state.latestPostId = action.payload;
     },
     setLatestUpdatedBlogPost: (state, action) => {
-      state.latestPostId = action.payload;
+      state.latestUpdatedPostId = action.payload;
     },
   },
 });
