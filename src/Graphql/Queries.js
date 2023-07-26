@@ -89,12 +89,9 @@ export const QUERY_SINGLE_BLOG_POST = gql`
 
 // get the comments by the id of the blog post
 export const QUERY_BLOG_POST_COMMENTS = gql`
-  query blogPostComments($id: ID) {
+  query blogPostComments($id: ID!) {
     comments(where: { blogPost: { id: $id } }) {
-      id
-      name
-      email
-      comment
+      ${comment}
     }
   }
 `;

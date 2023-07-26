@@ -8,7 +8,8 @@ import {
   PUBLISH_COMMENT,
 } from '../../Graphql/Mutations';
 
-const CreateComments = () => {
+const CreateComments = (props) => {
+  const { blogPostCommentId } = props;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [comment, setComment] = useState('');
