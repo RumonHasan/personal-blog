@@ -37,3 +37,14 @@ export const generateCustomMarker = (type) => {
   markerElement.classList.add(`${type}-marker`);
   return markerElement;
 };
+
+// random color generator
+export const randomColorCodeGenerator = () => {
+  let colorCode = '';
+  const colorCodeLen = 6;
+  const characters = '0123456789abcdef';
+  for (let index = 0; index < colorCodeLen; index++) {
+    colorCode += characters[Math.floor(Math.random() * characters.length)];
+  }
+  return colorCode;
+};

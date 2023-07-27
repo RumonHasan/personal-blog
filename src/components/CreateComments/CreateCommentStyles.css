@@ -1,0 +1,5 @@
+.comments-container {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  padding: 16px;
+  border: none; /* Remove the border */
+}

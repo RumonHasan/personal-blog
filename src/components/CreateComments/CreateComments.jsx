@@ -1,5 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Button, TextField, Grid, Container, Box } from '@mui/material';
+import {
+  Button,
+  TextField,
+  Grid,
+  Container,
+  Card,
+  CardContent,
+  CardHeader,
+} from '@mui/material';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './CreateCommentStyles.css';
@@ -50,36 +58,54 @@ const CreateComments = (props) => {
   // submitting the comment
   const handleSubmitComment = async (event) => {
     event.preventDefault();
-    const commentObject = {
-      name,
-      email,
-      comment,
-      slug,
-    };
-    const { createComment } = await graphcms.request(
-      CREATE_COMMENT,
-      commentObject
-    );
-    // publishing the comment to the post directly
-    await graphcms.request(PUBLISH_COMMENT, { id: createComment?.id });
-    setCommentTrigger((prevTrigger) => prevTrigger + 1);
-    clearFields();
+    try {
+      if (name && email && comment) {
+        const commentObject = {
+          name,
+          email,
+          comment,
+          slug,
+        };
+        const { createComment } = await graphcms.request(
+          CREATE_COMMENT,
+          commentObject
+        );
+        // publishing the comment to the post directly
+        await graphcms.request(PUBLISH_COMMENT, { id: createComment?.id });
+        setCommentTrigger((prevTrigger) => prevTrigger + 1);
+        clearFields();
+      } else {
+        alert('You have an empty field');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <Container maxWidth="md">
-      <Box sx={{ marginBottom: '16px' }}>
-        <Grid container spacing={2}>
-          {comments?.map((commentObject) => {
-            const { name, email, comment, id } = commentObject;
-            return (
-              <Grid item xs={12} sm={6} md={4} key={id}>
-                <Comment author={name} content={comment} />
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Box>
+      <Card
+        className="comments-container"
+        sx={{ marginBottom: '16px', overflow: 'hidden' }}
+      >
+        <CardHeader title="Comments From Readers:" />
+        <CardContent sx={{ overflow: 'auto', maxHeight: '300px' }}>
+          <Grid
+            container
+            spacing={2}
+            sx={{ overflow: 'auto', padding: '16px' }}
+          >
+            {comments?.map((commentObject) => {
+              const { name, comment, id } = commentObject;
+              return (
+                <Grid item xs={12} sm={6} md={4} key={id}>
+                  <Comment author={name} content={comment} />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </CardContent>
+      </Card>
 
       <form onSubmit={handleSubmitComment}>
         <Grid container spacing={3}>
@@ -114,7 +140,7 @@ const CreateComments = (props) => {
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary" fullWidth>
-              Post Your Comment!
+              Leave a Comment!
             </Button>
           </Grid>
         </Grid>
