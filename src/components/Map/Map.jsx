@@ -34,14 +34,6 @@ export const Map = () => {
     });
   }, []);
 
-  // get custom icon marker based on type
-  // const getCustomMarkerIconElement = (type) => {
-  //   const iconMarkupEl = document.createElement('div');
-  //   iconMarkupEl.classList.add(`${type}-marker`);
-  //   iconMarkupEl.classList.add('zoom-animation');
-  //   return iconMarkupEl;
-  // };
-
   useEffect(() => {
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
@@ -61,7 +53,7 @@ export const Map = () => {
   }, [lat, lng, markers, northBounds, southBounds, zoom]);
 
   return (
-    <div className="container">
+    <div className="map-parent-container">
       <Tooltip title="Displays the locations only the blogged hike and trip counts!">
         <div className="sidebar">
           Trips: {destinationCounter.tripCounter}, Hikes:{' '}

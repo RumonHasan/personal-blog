@@ -39,7 +39,7 @@ const Posts = ({ blogPosts }) => {
     <Grid container spacing={4} style={{ padding: '0 40px' }}>
       {blogPosts.map((post) => {
         return (
-          <Grid item key={post.id} xs={12} sm={12} md={4}>
+          <Grid item key={post.id} xs={12} sm={6} md={4}>
             <AppCard {...post} />
           </Grid>
         );

@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setBlogPostsCategories } from '../../store/projectSlice';
 import { colors } from '../../services/Themes/Colors';
 import LanguageIcon from '@mui/icons-material/Language';
+import InfoIcon from '@mui/icons-material/Info';
 // graph ql stuff
 import { graphcms, QUERY_SLUG_CATEGORIES } from '../../Graphql/Queries';
 
@@ -86,6 +87,16 @@ const AppNavbar = (props) => {
       <List>
         <ListItem>
           <ListItemButton>
+            <Link className="category-link" to={'/about'}>
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <Typography sx={{ paddingRight: '7px' }}>About Me</Typography>
+                <InfoIcon fontSize="small" />
+              </Box>
+            </Link>
+          </ListItemButton>
+        </ListItem>
+        <ListItem>
+          <ListItemButton>
             <Link className="category-link" to={'/map'}>
               <Box display="flex" justifyContent="center" alignItems="center">
                 <Typography sx={{ paddingRight: '7px' }}>Explore</Typography>
@@ -133,6 +144,17 @@ const AppNavbar = (props) => {
               <Typography fontFamily="Arial">Rumon`s BLOG (Beta)</Typography>
             </Link>
           </Typography>
+          {/** Link to about page */}
+          <Box
+            sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '32px' }}
+          >
+            <Link className="category-link" to={'/about'}>
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <Typography sx={{ paddingRight: '7px' }}>About Me</Typography>
+                <InfoIcon fontSize="small" />
+              </Box>
+            </Link>
+          </Box>
           {/** Link to map */}
           <Box
             sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '32px' }}

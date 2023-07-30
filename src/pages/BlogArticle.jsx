@@ -25,7 +25,9 @@ const BlogArticle = () => {
   return (
     <div className="blog-article-container">
       <BlogPost {...singleBlogPostContent} />
-      <CreateComments blogPostCommentId={blogPostId} />
+      <div className="comments-section">
+        <CreateComments blogPostCommentId={blogPostId} />
+      </div>
     </div>
   );
 };

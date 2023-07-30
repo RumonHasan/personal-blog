@@ -10,6 +10,7 @@ import BlogArticle from './pages/BlogArticle';
 import Lottie from 'lottie-react';
 import mainLoader from './services/Animation/loaderTwo.json';
 import Map from './components/Map/Map';
+import About from './components/About/About';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -48,6 +49,7 @@ const App = () => {
               <Route path="/search/:slug" element={<SearchedPosts />} />
               <Route path="/article/:slug" element={<BlogArticle />} />
               <Route path="/map" element={<Map />} />
+              <Route path="/about" element={<About />} />
             </Routes>
           </main>
         </div>

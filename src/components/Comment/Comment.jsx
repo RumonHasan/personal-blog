@@ -6,7 +6,6 @@ import { randomColorCodeGenerator } from '../../utils/general';
 export const Comment = (props) => {
   const { author, content } = props;
   const randomColor = randomColorCodeGenerator();
-  console.log(randomColor);
   return (
     <Card
       sx={{
