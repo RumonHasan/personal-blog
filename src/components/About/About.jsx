@@ -1,34 +1,23 @@
-import './AboutStyles.css';
-import {
-  Float,
-  OrbitControls,
-  useGLTF,
-  PresentationControls,
-  ContactShadows,
-  Html,
-  KeyboardControls,
-  Text,
-} from '@react-three/drei';
-import { startTransition, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-const About = () => {
-  const modelCdnLink =
-    'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/dog/model.gltf';
-  const model = useGLTF(modelCdnLink);
+import './AboutStyles.css';
+import Model from './Model/Models';
+import { Card } from '@mui/material';
 
+const About = () => {
   return (
     <div className="about-container">
-      <Canvas
-        camera={{
-          fov: 45,
-          near: 0.1,
-          far: 2000,
-          position: [-3, 1.5, 4],
-        }}
-      >
-        <ambientLight />
-        <primitive object={model.scene} />
-      </Canvas>
+      <Card sx={{ width: '100%', height: '100%' }}>
+        <Canvas
+          camera={{
+            fov: 45,
+            near: 0.1,
+            far: 200,
+            position: [3, 2, 6],
+          }}
+        >
+          <Model />
+        </Canvas>
+      </Card>
     </div>
   );
 };
