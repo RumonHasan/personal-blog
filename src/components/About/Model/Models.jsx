@@ -8,14 +8,21 @@ import {
 } from '@react-three/drei';
 import { useState, useEffect, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
+import * as THREE from 'three';
 
 const Model = () => {
   const modelCdnLink = useGLTF(
     'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/dog/model.gltf'
   );
+  const cameraPosition = new THREE.Vector3(0, 0, 0);
   const [modelScale, setModelScale] = useState(2);
-  const [modelRotation, setModelRotation] = useState(0.0005);
+  const [modelRotation, setModelRotation] = useState(0.00005);
   const [isModelHovered, setIsModelHovered] = useState(false);
+  const [descriptionText] = useState(`  Hello! I'm Rumon, a 
+    Temple University Japan Alumni, and currently,
+  I work as a software engineer at Rakuten. 
+  Welcome to my blog site!
+  I hope you enjoy it!`);
 
   // model hover
   const handleHoverOut = () => {
@@ -82,16 +89,20 @@ const Model = () => {
             // rotation-x={ 0.13 }
             scale={[modelScale, modelScale, modelScale]}
           >
-            {isModelHovered === true && (
-              <Text
-                fontSize={0.2}
-                position={[1.2, 2.05, 0.65]}
-                rotation-y={-1.25}
-                maxWidth={2}
-              >
-                Hi Am Rumon!
-              </Text>
-            )}
+            <Text
+              material={
+                new THREE.MeshStandardMaterial({
+                  color: 'black',
+                  roughness: '0.5',
+                  metalness: '0.6',
+                })
+              }
+              fontSize={0.06}
+              position={[0.25, 1.78, 0.4]}
+              maxWidth={2}
+            >
+              {descriptionText}
+            </Text>
           </primitive>
         </Float>
       </PresentationControls>
