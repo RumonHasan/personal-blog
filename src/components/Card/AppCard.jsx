@@ -11,8 +11,8 @@ import {
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './AppCardStyles.css';
-import BlogStatusBadge from './Components/BlogStatusBadge/BlogStatusBadge';
 import { useSelector } from 'react-redux';
+import CommentBadge from './Components/CommentBadge/CommentBadge';
 
 const AppCard = (props) => {
   const {
@@ -24,12 +24,15 @@ const AppCard = (props) => {
     createdAt,
     updatedAt,
     categories,
-    blogStatus,
   } = props;
   const latestBlogPostId = useSelector((data) => data.mainReducer.latestPostId);
+  const commentCount = useSelector(
+    (data) => data.mainReducer.postCommentsList[id]
+  );
+
   return (
     <Card
-      sx={{ maxWidth: 700 }}
+      sx={{ maxWidth: 700, position: 'relative' }}
       className={
         id === latestBlogPostId ? 'latest-post-card-container' : undefined
       }
@@ -42,7 +45,7 @@ const AppCard = (props) => {
           }
         />
         <Box>
-          <BlogStatusBadge blogStatus={blogStatus} />
+          <CommentBadge commentCount={commentCount} />
         </Box>
       </Box>
 
@@ -103,6 +106,7 @@ AppCard.propTypes = {
   updatedAt: PropTypes.any,
   categories: PropTypes.any,
   blogStatus: PropTypes.any,
+  comments: PropTypes.any,
 };
 
 export default AppCard;

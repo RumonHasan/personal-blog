@@ -14,24 +14,27 @@ const Posts = ({ blogPosts }) => {
   // saving the id of the latest blog post
   useEffect(() => {
     if (blogPosts.length) {
-      const getLatestBlogExtracts = (type) => {
-        let blogDateExtract = blogPosts.map((blog) => {
-          const { createdAt, id, updatedAt } = blog;
-          const createdAtOrUpdatedString =
-            new Date(type === 'createdAt' ? createdAt : updatedAt).getTime() /
-            1000;
-          return [id, createdAtOrUpdatedString];
-        });
-        return blogDateExtract;
+      const latestBlogPostExtracts = () => {
+        const getLatestBlogExtracts = (type) => {
+          let blogDateExtract = blogPosts.map((blog) => {
+            const { createdAt, id, updatedAt } = blog;
+            const createdAtOrUpdatedString =
+              new Date(type === 'createdAt' ? createdAt : updatedAt).getTime() /
+              1000;
+            return [id, createdAtOrUpdatedString];
+          });
+          return blogDateExtract;
+        };
+        const createdBlogs = getLatestBlogExtracts('createdAt').sort(
+          (a, b) => b[1] - a[1]
+        );
+        const updatedBlogs = getLatestBlogExtracts('updatedAt').sort(
+          (a, b) => b[1] - a[1]
+        );
+        dispatch(setLatestBlogPost(createdBlogs[0][0]));
+        dispatch(setLatestUpdatedBlogPost(updatedBlogs[0][0]));
       };
-      const createdBlogs = getLatestBlogExtracts('createdAt').sort(
-        (a, b) => b[1] - a[1]
-      );
-      const updatedBlogs = getLatestBlogExtracts('updatedAt').sort(
-        (a, b) => b[1] - a[1]
-      );
-      dispatch(setLatestBlogPost(createdBlogs[0][0]));
-      dispatch(setLatestUpdatedBlogPost(updatedBlogs[0][0]));
+      latestBlogPostExtracts();
     }
   }, [blogPosts, dispatch]);
 

@@ -12,6 +12,7 @@ export const slices = createSlice({
     blogPostContent: {},
     latestPostId: '',
     latestUpdatedPostId: '',
+    postCommentsList: {},
   },
   reducers: {
     setSearchValue: (state, action) => {
@@ -44,6 +45,14 @@ export const slices = createSlice({
     setLatestUpdatedBlogPost: (state, action) => {
       state.latestUpdatedPostId = action.payload;
     },
+    // setting post id with comment count
+    setPostWithCommentCount: (state, action) => {
+      const { postId, commentCount } = action.payload;
+      state.postCommentsList = {
+        ...state.postCommentsList,
+        [postId]: commentCount,
+      };
+    },
   },
 });
 
@@ -58,6 +67,7 @@ export const {
   setBlogPostContent,
   setLatestBlogPost,
   setLatestUpdatedBlogPost,
+  setPostWithCommentCount,
 } = slices.actions;
 
 export default slices.reducer;
