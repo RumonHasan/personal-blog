@@ -1,11 +1,11 @@
 import './CommentStyles.css';
 import { Card, CardHeader, CardContent, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
-import { randomColorCodeGenerator } from '../../utils/general';
+import { colors } from '../../services/Themes/Colors';
 
 export const Comment = (props) => {
   const { author, content } = props;
-  const randomColor = randomColorCodeGenerator();
+
   return (
     <Card
       sx={{
@@ -17,7 +17,7 @@ export const Comment = (props) => {
       From:
       <CardHeader
         title={
-          <Typography variant="h6" sx={{ color: `#${randomColor}` }}>
+          <Typography variant="h6" sx={{ color: colors.MAIN_BLUE }}>
             {author}
           </Typography>
         }
