@@ -14,23 +14,13 @@ const Model = () => {
   const modelCdnLink = useGLTF(
     'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/dog/model.gltf'
   );
-  const cameraPosition = new THREE.Vector3(0, 0, 0);
   const [modelScale, setModelScale] = useState(2);
-  const [modelRotation, setModelRotation] = useState(0.00005);
-  const [isModelHovered, setIsModelHovered] = useState(false);
+  const [modelRotation] = useState(0.00005);
   const [descriptionText] = useState(`  Hello! I'm Rumon, a 
     Temple University Japan Alumni, and currently,
   I work as a software engineer at Rakuten. 
   Welcome to my blog site!
   I hope you enjoy it!`);
-
-  // model hover
-  const handleHoverOut = () => {
-    setIsModelHovered(false);
-  };
-  const handleHoverOver = () => {
-    setIsModelHovered(true);
-  };
 
   const modelRef = useRef();
   // resizing based on screen width
@@ -79,8 +69,6 @@ const Model = () => {
           />
 
           <primitive
-            onPointerOver={handleHoverOver}
-            onPointerOut={handleHoverOut}
             ref={modelRef}
             // eslint-disable-next-line react/no-unknown-property
             object={modelCdnLink.scene}
