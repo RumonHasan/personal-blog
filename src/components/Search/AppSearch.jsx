@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Box, TextField, IconButton } from '@mui/material';
 import './AppSearchStyles.css';
 import { Search as SearchIcon } from '@mui/icons-material';
@@ -20,8 +19,6 @@ const AppSearch = () => {
     let searchTerm = createHyphenatedSearchParams(searchValue);
     navigate(`/search/${searchTerm}`);
   };
-
-  useEffect;
 
   return (
     <Box>

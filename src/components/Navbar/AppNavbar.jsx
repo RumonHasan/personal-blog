@@ -167,6 +167,17 @@ const AppNavbar = (props) => {
             </Link>
           </Box>
 
+          {/** popular menu item */}
+          <Box
+            sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '32px' }}
+          >
+            <Link className="category-link" to={'/popular'}>
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <Typography sx={{ paddingRight: '7px' }}>Popular</Typography>
+              </Box>
+            </Link>
+          </Box>
+
           <Box
             sx={{ display: { xs: 'none', sm: 'block' } }}
             className="category-container"
