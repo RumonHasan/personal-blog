@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Card, CardContent, CardHeader } from '@mui/material';
+import { Card, CardContent, CardHeader, Box } from '@mui/material';
 import {
   graphcms as graphPostCommentscms,
   QUERY_BLOG_POST_COMMENTS,
@@ -61,18 +61,42 @@ const Popular = () => {
       <div className="popular-posts">
         {sortedCommentedPosts?.map((sortedPost) => {
           const commentLength = sortedPost.comments.length;
-          const { title, id, slug } = sortedPost;
+          const { title, id, slug, coverImage } = sortedPost;
+          const postImageUrl = coverImage.url;
+          console.log(postImageUrl);
           return (
             <Link to={`/article/${slug}`} key={id}>
               <Card
                 className="popular-post-card"
                 sx={{ width: '100%', height: '100px', marginBottom: '10px' }}
               >
-                <CardHeader
-                  title={title}
-                  subheader={`Number of Comments: ${commentLength}`}
-                />
-                <CardContent></CardContent>
+                <Box display={'flex'} justifyContent="space-between">
+                  <CardHeader
+                    title={
+                      title.length > 20 ? title.slice(0, 20) + `...` : title
+                    }
+                    subheader={
+                      commentLength === 0 ? (
+                        'Be the first to comment!'
+                      ) : (
+                        <p>
+                          Number of Comments:
+                          <span className="popular-post-comment-length">
+                            {commentLength}
+                          </span>
+                        </p>
+                      )
+                    }
+                  />
+                  <CardContent>
+                    <img
+                      src={postImageUrl}
+                      width={60}
+                      height={60}
+                      className="popular-post-cover"
+                    />
+                  </CardContent>
+                </Box>
               </Card>
             </Link>
           );
