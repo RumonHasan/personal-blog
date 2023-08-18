@@ -11,6 +11,7 @@ import Lottie from 'lottie-react';
 import mainLoader from './services/Animation/loaderTwo.json';
 import Map from './components/Map/Map';
 import About from './components/About/About';
+import Popular from './pages/Popular';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -50,6 +51,7 @@ const App = () => {
               <Route path="/article/:slug" element={<BlogArticle />} />
               <Route path="/map" element={<Map />} />
               <Route path="/about" element={<About />} />
+              <Route path="/popular" element={<Popular />} />
             </Routes>
           </main>
         </div>

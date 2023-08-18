@@ -21,6 +21,7 @@ import { setBlogPostsCategories } from '../../store/projectSlice';
 import { colors } from '../../services/Themes/Colors';
 import LanguageIcon from '@mui/icons-material/Language';
 import InfoIcon from '@mui/icons-material/Info';
+import { Visibility } from '@mui/icons-material';
 // graph ql stuff
 import { graphcms, QUERY_SLUG_CATEGORIES } from '../../Graphql/Queries';
 
@@ -105,6 +106,18 @@ const AppNavbar = (props) => {
             </Link>
           </ListItemButton>
         </ListItem>
+        {/* popular list items */}
+        <ListItem>
+          <ListItemButton>
+            <Link className="category-link" to={'/popular'}>
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <Typography sx={{ paddingRight: '7px' }}>Popular</Typography>
+                <Visibility />
+              </Box>
+            </Link>
+          </ListItemButton>
+        </ListItem>
+        <Divider />
         <ListItem>
           <ListItemButton>
             <Link to="/" className="category-link category-select-item">
@@ -163,6 +176,18 @@ const AppNavbar = (props) => {
               <Box display="flex" justifyContent="center" alignItems="center">
                 <Typography sx={{ paddingRight: '7px' }}>Explore</Typography>
                 <LanguageIcon fontSize="small" />
+              </Box>
+            </Link>
+          </Box>
+
+          {/** popular menu item */}
+          <Box
+            sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '32px' }}
+          >
+            <Link className="category-link" to={'/popular'}>
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <Typography sx={{ paddingRight: '7px' }}>Popular</Typography>
+                <Visibility />
               </Box>
             </Link>
           </Box>

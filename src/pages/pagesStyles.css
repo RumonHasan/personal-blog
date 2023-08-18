@@ -11,3 +11,30 @@
     padding-bottom: 32px; /* Set a smaller margin for mobile view to accommodate the fixed AppBar */
   }
 }
+
+/* popular post styles*/
+.popular-posts-container {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.popular-posts {
+  width: 80%;
+}
+.popular-post-card:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+  transition: 450ms ease-in-out;
+}
+.popular-post-comment-length {
+  font-size: 20px;
+  margin-left: 5px;
+  color: red;
+  font-weight: bold;
+}
+
+.popular-post-cover {
+  border-radius: 5px;
+}
