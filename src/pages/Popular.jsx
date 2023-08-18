@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Card, CardContent, CardHeader, Box } from '@mui/material';
+import { Card, CardContent, Box, Typography } from '@mui/material';
 import {
   graphcms as graphPostCommentscms,
   QUERY_BLOG_POST_COMMENTS,
@@ -12,6 +12,7 @@ const Popular = () => {
   const [postComments, setPostComments] = useState({});
   const [sortedCommentedPosts, setSortedCommentedPosts] = useState([]);
   const location = useLocation();
+  // const isMobile = useMediaQuery('max-width:600px');
 
   // fetch blog posts
   const getBlogPosts = async () => {
@@ -63,40 +64,45 @@ const Popular = () => {
           const commentLength = sortedPost.comments.length;
           const { title, id, slug, coverImage } = sortedPost;
           const postImageUrl = coverImage.url;
-          console.log(postImageUrl);
           return (
             <Link to={`/article/${slug}`} key={id}>
               <Card
                 className="popular-post-card"
-                sx={{ width: '100%', height: '100px', marginBottom: '10px' }}
+                sx={{ width: '100%', height: '120px', marginBottom: '10px' }}
               >
-                <Box display={'flex'} justifyContent="space-between">
-                  <CardHeader
-                    title={
-                      title.length > 20 ? title.slice(0, 20) + `...` : title
-                    }
-                    subheader={
-                      commentLength === 0 ? (
-                        'Be the first to comment!'
-                      ) : (
-                        <p>
-                          Number of Comments:
-                          <span className="popular-post-comment-length">
-                            {commentLength}
+                <CardContent>
+                  <Box
+                    sx={{ width: '100%' }}
+                    display={'flex'}
+                    justifyContent="space-between"
+                  >
+                    <Box
+                      display="flex"
+                      justifyContent={'center'}
+                      flexDirection="column"
+                    >
+                      <Typography variant="h6">{title}</Typography>
+                      <p>
+                        {commentLength > 0 ? (
+                          <span>
+                            Number of Comments:{' '}
+                            <span className="popular-post-comment-length">
+                              {commentLength}
+                            </span>
                           </span>
-                        </p>
-                      )
-                    }
-                  />
-                  <CardContent>
+                        ) : (
+                          'Be the first to comment!'
+                        )}
+                      </p>
+                    </Box>
                     <img
                       src={postImageUrl}
                       width={60}
                       height={60}
                       className="popular-post-cover"
                     />
-                  </CardContent>
-                </Box>
+                  </Box>
+                </CardContent>
               </Card>
             </Link>
           );
